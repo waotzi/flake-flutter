@@ -1,0 +1,82 @@
+* flutterFlake
+a flake for flutter-projects on nixos
+** ATTENTION
+*** =~/.cache/flutter/dart-sdk=
+**** hacky workaround
+currently dart is copied to the cache on devshell-entry
+#+BEGIN_EXAMPLE shell
+cp -r ${flutter}/bin/cache/dart-sdk ~/.cache/flutter/dart-sdk
+#+END_EXAMPLE
+**** TODO find and implement a clean solution
+** USAGE
+*** flake XOR
+**** create flake in PROJECT-DIR
+#+BEGIN_EXAMPLE shell
+nix flake new --template github:FrankBeu/flutterFlake ./PROJECT-DIR
+#+END_EXAMPLE
+**** initialize flake in current directory
+#+BEGIN_EXAMPLE shell
+nix flake init --template github:FrankBeu/flutterFlake
+#+END_EXAMPLE
+*** enable direnv
+#+BEGIN_EXAMPLE shell
+direnv allow
+direnv reload
+#+END_EXAMPLE
+*** flutter
+#+BEGIN_SRC shell :results drawer
+flutter create --project-name <PROJECTNAME> .
+#+END_SRC
+*** reload direnv
+#+BEGIN_EXAMPLE shell
+direnv reload
+#+END_EXAMPLE
+*** use unsafe repository
+**** get path to flutter
+#+BEGIN_EXAMPLE shell
+flutter --version
+#+END_EXAMPLE
+**** make direnv git-safe XOR
+***** command
+#+BEGIN_EXAMPLE shell
+git config --global --add safe.directory <PATH-FROM-FLUTTER--VERSION>
+#+END_EXAMPLE
+***** config-entry
+#+BEGIN_EXAMPLE conf
+[safe]
+	# directory = /nix/store/amicdraczf6798z2vcg0j9q7mid0365m-flutter-3.0.4-unwrapped
+	directory = <PATH-FROM-FLUTTER--VERSION>
+#+END_EXAMPLE
+*** update  a =.gitignore=
+#+BEGIN_EXAMPLE sh
+echo -e "\n/.direnv/\n**/IGNORE/" >> .gitignore
+#+END_EXAMPLE sh
+*** fix <PROJECT-*>
+#+BEGIN_EXAMPLE sh
+rg <PROJECT-*>
+sed 's/<PROJECTNAME>/<ACTUAL-PROJECT-NAME>/' *
+sed 's/<PROJECTDESCRIPTION>/<ACTUAL-PROJECT-DESCRIPTION>/' *
+#+END_EXAMPLE sh
+**** TODO use sd and fd
+*** RUN
+#+BEGIN_EXAMPLE shell
+flutter run
+#+END_EXAMPLE
+** INFO
+*** version
+Tags relate to the flutter-version in ~major.minor.patch~. \\
+The buildnumber (+n) is used to signify a optional flake-version.
+*** nvfetcher
+is used for dart and flutter
+*** nix
+is based on nixpkgs
+cf. =nix/README.org=
+** TODO TODOS
+*** TODO use app
+*** TODO enable ~linux~ builds
+currently gtk3-dev-libs cannot be found
+*** TODO do not use =~/.cache/flutter=
+*** TODO emulator
+*** TODO update-workflow
+** DONE ERLEDIGTES
+*** DONE flake-template

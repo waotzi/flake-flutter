@@ -1,0 +1,30 @@
+{
+    "dart": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "dart",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-AFJGeiPsjUZSO+DykmOIFETg2jIohg62tp3ghZrKJFk=",
+            "type": "url",
+            "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.5/sdk/dartsdk-linux-x64-release.zip"
+        },
+        "version": "2.17.5"
+    },
+    "flutter": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "flutter",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-vh3QjLGFBN321DUET9XhYqSkILjEj+ZqAALu/mxY+go=",
+            "type": "url",
+            "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.0.4-stable.tar.xz"
+        },
+        "version": "3.0.4"
+    }
+}
