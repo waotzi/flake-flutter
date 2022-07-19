@@ -86,5 +86,8 @@ devshell.mkShell {
     pkgconfig
     sqlite
     sqlite-web
+
+    sd
+    fd
   ];
 }

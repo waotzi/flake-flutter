@@ -14,14 +14,19 @@ cp -r ${flutter}/bin/cache/dart-sdk ~/.cache/flutter/dart-sdk
 #+BEGIN_EXAMPLE shell
 nix flake new --template github:FrankBeu/flutterFlake ./PROJECT-DIR
 #+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+nix flake new --template github:FrankBeu/flutterFlake/<TAG> ./PROJECT-DIR
+#+END_EXAMPLE
 **** initialize flake in current directory
 #+BEGIN_EXAMPLE shell
 nix flake init --template github:FrankBeu/flutterFlake
 #+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+nix flake init --template github:FrankBeu/flutterFlake/<TAG>
+#+END_EXAMPLE
 *** enable direnv
 #+BEGIN_EXAMPLE shell
 direnv allow
-direnv reload
 #+END_EXAMPLE
 *** flutter
 #+BEGIN_SRC shell :results drawer
@@ -53,11 +58,10 @@ echo -e "\n/.direnv/\n**/IGNORE/" >> .gitignore
 #+END_EXAMPLE sh
 *** fix <PROJECT-*>
 #+BEGIN_EXAMPLE sh
-rg <PROJECT-*>
-sed 's/<PROJECTNAME>/<ACTUAL-PROJECT-NAME>/' *
-sed 's/<PROJECTDESCRIPTION>/<ACTUAL-PROJECT-DESCRIPTION>/' *
+rg -e '<PROJECT-.*>'
+sd '<PROJECT-NAME>'        '<ACTUAL-PROJECT-NAME>'        *
+sd '<PROJECT-DESCRIPTION>' '<ACTUAL-PROJECT-DESCRIPTION>' *
 #+END_EXAMPLE sh
-**** TODO use sd and fd
 *** RUN
 #+BEGIN_EXAMPLE shell
 flutter run
@@ -65,7 +69,8 @@ flutter run
 ** INFO
 *** version
 Tags relate to the flutter-version in ~major.minor.patch~. \\
-The buildnumber (+n) is used to signify a optional flake-version.
+The optional flakeVersion is appended: ~major.minor.patch.flakeVersion~. \\
+A buildNumber (+N) cannot be used because of ~nix flake~ restrictions.
 *** nvfetcher
 is used for dart and flutter
 *** nix
