@@ -29,6 +29,9 @@ nix flake new --template github:FrankBeu/flutterFlake/<TAG> ./PROJECT-DIR
 #+BEGIN_EXAMPLE shell
 nix flake init --template github:FrankBeu/flutterFlake
 #+END_EXAMPLE
+#+BEGIN_EXAMPLE shell
+nix flake init --template github:FrankBeu/flutterFlake/<TAG>
+#+END_EXAMPLE
 **** TODO enable direnv
 #+BEGIN_EXAMPLE shell
 direnv allow

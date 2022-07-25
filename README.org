@@ -9,63 +9,7 @@ cp -r ${flutter}/bin/cache/dart-sdk ~/.cache/flutter/dart-sdk
 #+END_EXAMPLE
 **** TODO find and implement a clean solution
 ** USAGE
-*** flake XOR
-**** create flake in PROJECT-DIR
-#+BEGIN_EXAMPLE shell
-nix flake new --template github:FrankBeu/flutterFlake ./PROJECT-DIR
-#+END_EXAMPLE
-#+BEGIN_EXAMPLE shell
-nix flake new --template github:FrankBeu/flutterFlake/<TAG> ./PROJECT-DIR
-#+END_EXAMPLE
-**** initialize flake in current directory
-#+BEGIN_EXAMPLE shell
-nix flake init --template github:FrankBeu/flutterFlake
-#+END_EXAMPLE
-#+BEGIN_EXAMPLE shell
-nix flake init --template github:FrankBeu/flutterFlake/<TAG>
-#+END_EXAMPLE
-*** enable direnv
-#+BEGIN_EXAMPLE shell
-direnv allow
-#+END_EXAMPLE
-*** flutter
-#+BEGIN_SRC shell :results drawer
-flutter create --project-name <PROJECTNAME> .
-#+END_SRC
-*** reload direnv
-#+BEGIN_EXAMPLE shell
-direnv reload
-#+END_EXAMPLE
-*** use unsafe repository
-**** get path to flutter
-#+BEGIN_EXAMPLE shell
-flutter --version
-#+END_EXAMPLE
-**** make direnv git-safe XOR
-***** command
-#+BEGIN_EXAMPLE shell
-git config --global --add safe.directory <PATH-FROM-FLUTTER--VERSION>
-#+END_EXAMPLE
-***** config-entry
-#+BEGIN_EXAMPLE conf
-[safe]
-	# directory = /nix/store/amicdraczf6798z2vcg0j9q7mid0365m-flutter-3.0.4-unwrapped
-	directory = <PATH-FROM-FLUTTER--VERSION>
-#+END_EXAMPLE
-*** update  a =.gitignore=
-#+BEGIN_EXAMPLE sh
-echo -e "\n/.direnv/\n**/IGNORE/" >> .gitignore
-#+END_EXAMPLE sh
-*** fix <PROJECT-*>
-#+BEGIN_EXAMPLE sh
-rg -e '<PROJECT-.*>'
-sd '<PROJECT-NAME>'        '<ACTUAL-PROJECT-NAME>'        *
-sd '<PROJECT-DESCRIPTION>' '<ACTUAL-PROJECT-DESCRIPTION>' *
-#+END_EXAMPLE sh
-*** RUN
-#+BEGIN_EXAMPLE shell
-flutter run
-#+END_EXAMPLE
+cf. [[file:template/README.org::*SETUP][SETUP]] (=./template/README.org=)
 ** INFO
 *** version
 Tags relate to the flutter-version in ~major.minor.patch~. \\
@@ -76,12 +20,29 @@ is used for dart and flutter
 *** nix
 is based on nixpkgs
 cf. =nix/README.org=
+*** update-workflow
+- specify {flutter,dart}-version in =./nvfetcher.toml=
+- update =./_sources=
+  #+BEGIN_SRC shell :results drawer
+  nvfetcher -f dart -f flutter
+  #+END_SRC
+- update tag in =./template/flake.nix=
+   #+BEGIN_EXAMPLE nix
+   ### …
+    flutter-flake = {
+      url    = "github:FrankBeu/flutterFlake/<TAG>";
+   ### …
+   #+END_EXAMPLE
+- update =changelog.org=
+- commit
+- tag (name: flutter version)
+- push
 ** TODO TODOS
 *** TODO use app
 *** TODO enable ~linux~ builds
 currently gtk3-dev-libs cannot be found
 *** TODO do not use =~/.cache/flutter=
 *** TODO emulator
-*** TODO update-workflow
 ** DONE ERLEDIGTES
 *** DONE flake-template
+*** DONE update-workflow
