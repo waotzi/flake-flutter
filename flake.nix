@@ -66,12 +66,10 @@
   {
     packages = {
       android-sdk = android.sdk.${system} (sdkPkgs: with sdkPkgs; [
-        build-tools-29-0-2
         build-tools-30-0-3
         cmdline-tools-latest
         emulator
         platform-tools
-        platforms-android-29
         platforms-android-30
         platforms-android-31
 

@@ -3,18 +3,18 @@
 {
   dart = {
     pname = "dart";
-    version = "2.16.2";
+    version = "2.17.6";
     src = fetchurl {
-      url = "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.2/sdk/dartsdk-linux-x64-release.zip";
-      sha256 = "sha256-egrYd7B4XhkBiHPIFE2zopxKtQ58GqlogAKA/UeiXnI=";
+      url = "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.6/sdk/dartsdk-linux-x64-release.zip";
+      sha256 = "sha256-+DfzhWA6HPsU3bfdDNZIILKXZGYmvbaJzPwyePqDsrE=";
     };
   };
   flutter = {
     pname = "flutter";
-    version = "2.10.5";
+    version = "3.0.5";
     src = fetchurl {
-      url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_2.10.5-stable.tar.xz";
-      sha256 = "sha256-DTZwxlMUYk8NS1SaWUJolXjD+JnRW73Ps5CdRHDGnt0=";
+      url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.0.5-stable.tar.xz";
+      sha256 = "sha256-aRoSXOeQ+vijRTa5vSmMMa2/LSVo/JOE4tQ6acXB1sw=";
     };
   };
 }

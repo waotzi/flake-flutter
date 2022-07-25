@@ -17,8 +17,8 @@ The optional flakeVersion is appended: ~major.minor.patch.flakeVersion~. \\
 A buildNumber (+N) cannot be used because of ~nix flake~ restrictions.
 *** nvfetcher
 is used for dart and flutter
-*** nix
-is based on nixpkgs
+*** =nix=
+is based on nixpkgs \\
 cf. =nix/README.org=
 *** update-workflow
 - specify {flutter,dart}-version in =./nvfetcher.toml=
