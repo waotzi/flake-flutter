@@ -7,6 +7,14 @@ currently dart is copied to the cache on devshell-entry
 #+BEGIN_EXAMPLE shell
 cp -r ${flutter}/bin/cache/dart-sdk ~/.cache/flutter/dart-sdk
 #+END_EXAMPLE
+*** lsp
+**** if lsp cannot find the ~dart_analysis_server~
+run the following sequence in emacs:
+ - ~shell-command~ (=SPC !=) touch flake.nix
+ - ~direnv-update-directory-environment~ (=SPC P D D=)
+ - optional check: ~shell-command~ (=SPC !=) echo $FLUTTER_SDK
+ - ~revert-buffer~ (=SPC b r=)
+if ~$FLUTTER_SDK~ is set and loaded (should be set automatically by the flake) lsp will find the server.
 ** TODO TODOS
 *** TODO SETUP
 **** DONE flake XOR

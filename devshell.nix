@@ -87,6 +87,8 @@ devshell.mkShell {
     sqlite
     sqlite-web
 
+    nodePackages.firebase-tools
+
     sd
     fd
   ];

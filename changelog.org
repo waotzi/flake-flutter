@@ -15,6 +15,14 @@ The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]
 **** Removed
 **** Fixed
 **** Security
+** 2.10.5  - <2022-07-27>
+**** ~Added~
+- nodePackages.firebase-tools
+- build-tools-29-0-2
+- platforms-android-29
+**** ~Changed~
+- flutterVersion: 2.10.5
+- dartVersion:    2.16.2
 ** 3.0.4.1 - <2022-07-19>
 **** ~Added~
 - changelog.org
