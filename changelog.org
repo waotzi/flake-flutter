@@ -14,11 +14,11 @@ The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]
 **** Deprecated
 **** Removed
 **** Fixed
+**** Security
 ** 3.0.6    - <2023-09-29>
 **** ~Changed~
-- flutterVersion: 2.10.5
-- dartVersion:    2.16.2
-**** Security
+- flutterVersion: 3.10.6
+- dartVersion:    3.0.7
 ** 3.0.5    - <2022-07-27>
 **** ~Removed~
 - build-tools-29-0-2

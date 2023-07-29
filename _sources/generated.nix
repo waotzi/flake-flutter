@@ -11,10 +11,10 @@
   };
   flutter = {
     pname = "flutter";
-    version = "3.0.5";
+    version = "3.10.6";
     src = fetchurl {
-      url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.0.5-stable.tar.xz";
-      sha256 = "sha256-aRoSXOeQ+vijRTa5vSmMMa2/LSVo/JOE4tQ6acXB1sw=";
+      url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.6-stable.tar.xz";
+      sha256 = "sha256-cEjlGonJmltsrG2K5BYSEmTv+nbaNNulwOfPhVGcjpg=";
     };
   };
 }
