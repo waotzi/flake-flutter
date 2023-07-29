@@ -3,10 +3,10 @@
 {
   dart = {
     pname = "dart";
-    version = "2.17.6";
+    version = "3.0.7";
     src = fetchurl {
-      url = "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.6/sdk/dartsdk-linux-x64-release.zip";
-      sha256 = "sha256-+DfzhWA6HPsU3bfdDNZIILKXZGYmvbaJzPwyePqDsrE=";
+      url = "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.7/sdk/dartsdk-linux-x64-release.zip";
+      sha256 = "sha256-zM1TAPqlqavOEqX3dYbiY1ACjOqCu0/47rVWQbWKLh0=";
     };
   };
   flutter = {
