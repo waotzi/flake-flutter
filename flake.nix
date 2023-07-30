@@ -2,44 +2,17 @@
   description = "A flake to manage a flutter-development-environment";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.05";
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    android = {
-      url = "github:tadfisher/android-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-dart = {
-      url = "github:tadfisher/nix-dart";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nvfetcher = {
-      url    = "github:berberman/nvfetcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.nixpkgs-lib.follows = "nixpkgs";
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
+    android-nixpkgs.url = "github:tadfisher/android-nixpkgs/stable";
+    android-nixpkgs.inputs.nixpkgs.follows = "nixpkgs";
+    android-nixpkgs.inputs.devshell.follows = "devshell";
   };
 
-  outputs = { android
-  , devshell
-  , flake-utils
-  , nix-dart
-  , nixpkgs
-  , nvfetcher
-  , self
-  }:
-
+  outputs = { android-nixpkgs, devshell, flake-utils, nixpkgs, self }:
   {
     overlay = final: prev: {
       inherit (self.packages.${final.system}) android-sdk android-studio;
@@ -54,6 +27,9 @@
 
         android_sdk.accept_license = true;
         allowUnfree = true;
+        #permittedInsecurePackages = [
+        #  "python-2.7.18.6"
+        #];
       };
       overlays = [
         devshell.overlay
@@ -61,11 +37,11 @@
       ];
     };
 
-    nv-sources = pkgs.callPackage (import ./_sources/generated.nix) {};
+    #nv-sources = pkgs.callPackage (import ./_sources/generated.nix) {};
   in rec
   {
     packages = {
-      android-sdk = android.sdk.${system} (sdkPkgs: with sdkPkgs; [
+      android-sdk = android-nixpkgs.sdk.${system} (sdkPkgs: with sdkPkgs; [
         build-tools-30-0-3
         cmdline-tools-latest
         emulator
@@ -79,24 +55,9 @@
       ]);
 
       android-studio = pkgs.androidStudioPackages.stable;
-      # android-studio = pkgs.androidStudioPackages.beta;
-      # android-studio = pkgs.androidStudioPackages.preview;
-      # android-studio = pkgs.androidStudioPackage.canary;
     };
 
-    ### DART
-    dart = (pkgs.callPackage ./nix/development/interpreters/dart/default.nix {
-      inherit (nv-sources.dart) src version;
-    });
-
-    ### FLUTTER
-    inherit (pkgs.callPackage ./nix/development/compilers/flutter/default.nix {
-      inherit dart;
-      inherit (nv-sources.flutter) src version;
-    }) flutter;
-
-
-    devShell = import ./devshell.nix { inherit dart flutter pkgs; };
+    devShell = import ./devshell.nix { inherit pkgs; };
 
 
   }) // {

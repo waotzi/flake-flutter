@@ -1,7 +1,4 @@
-{ dart
-, flutter
-, pkgs
-}:
+{ pkgs }:
 
 with pkgs;
 devshell.mkShell {
@@ -69,12 +66,12 @@ devshell.mkShell {
     android-sdk
     gradle
     jdk11
-
+    pkg-config
     android-sdk
     clang
     cmake
-    dart
-    flutter
+    
+    flutter37
     glib
     glib.dev
     google-chrome
