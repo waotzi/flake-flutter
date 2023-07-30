@@ -24,12 +24,8 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {
-
         android_sdk.accept_license = true;
         allowUnfree = true;
-        #permittedInsecurePackages = [
-        #  "python-2.7.18.6"
-        #];
       };
       overlays = [
         devshell.overlay
@@ -61,7 +57,6 @@
 
 
   }) // {
-
     templates = {
       flutter = {
         path        = ./template;
