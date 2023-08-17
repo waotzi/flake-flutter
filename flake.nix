@@ -2,7 +2,7 @@
   description = "A flake to manage a flutter-development-environment";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils.inputs.nixpkgs-lib.follows = "nixpkgs";
     devshell.url = "github:numtide/devshell";

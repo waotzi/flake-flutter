@@ -15,16 +15,25 @@ The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]
 **** Removed
 **** Fixed
 **** Security
+** 3.1.1   - <2023-08-17>
+**** ~Added~
+- audio related dependencies
+** 3.1.0   - <2023-08-17>
+**** ~Changed~
+- flutterVersion: 3.10.0
+- dartVersion:    3.0.0
 ** 3.0.8    - <2023-08-17>
 **** ~Changed~
 - clean up the repository
 ** 3.0.7    - <2023-07-30>
-**** ~Changed~
-- replace flutter package with nixpkgs
+**** ~Added~
+- flutter package directly from nixpkgs
+**** ~Removed~
+- nvfetcher for dart and flutter
 ** 3.0.6    - <2023-07-29>
 **** ~Changed~
-- flutterVersion: 3.10.6
-- dartVersion:    3.0.7
+- flutterVersion: 3.7.12
+- dartVersion:    2.19.6
 ** 3.0.5    - <2022-07-27>
 **** ~Removed~
 - build-tools-29-0-2
@@ -32,7 +41,7 @@ The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]
 **** ~Changed~
 - flutterVersion: 3.0.5
 - dartVersion:    2.17.6
-** 2.10.5  - <2022-07-27>
+** 3.0.4.2  - <2022-07-27>
 **** ~Added~
 - nodePackages.firebase-tools
 - build-tools-29-0-2
@@ -47,7 +56,7 @@ The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]
 - README: usage
 ** 3.0.4    - <2022-07-19>
 initial version
-***  Added
+***  ~Added~
 - basic mobile flutter development
 - nvfetcher for dart and flutter
 ** INFO

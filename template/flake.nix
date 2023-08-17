@@ -2,9 +2,9 @@
   description = "<PROJECT-DESCRIPTION>"; ### TODO
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     flutter-flake = {
-      url    = "github:waotzi/flake-flutter/3.0.8";
+      url    = "github:FrankBeu/flutterFlake/3.1.0";
       inputs.nixpkgs.follows  = "nixpkgs";
     };
 

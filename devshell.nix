@@ -61,11 +61,19 @@ devshell.mkShell {
     gradle
     jdk11
     pkg-config
+    pkgconfig
     android-sdk
     clang
     cmake
-    
-    flutter37
+
+    libunwind
+    orc
+    gst_all_1.gstreamer
+    gst_all_1.gst-libav
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
+
+    flutter
     glib
     glib.dev
     google-chrome
@@ -73,7 +81,6 @@ devshell.mkShell {
     gtk3.dev
     lcov
     ninja
-    nvfetcher
     pkgconfig
     sqlite
     sqlite-web
