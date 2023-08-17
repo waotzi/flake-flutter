@@ -18,7 +18,6 @@
       inherit (self.packages.${final.system}) android-sdk android-studio;
     };
   } //
-  # flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
   flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = import nixpkgs {

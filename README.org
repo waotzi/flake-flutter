@@ -1,13 +1,5 @@
 * flutterFlake
 a flake for flutter-projects on nixos
-** ATTENTION
-*** =~/.cache/flutter/dart-sdk=
-**** hacky workaround
-currently dart is copied to the cache on devshell-entry
-#+BEGIN_EXAMPLE shell
-cp -r ${flutter}/bin/cache/dart-sdk ~/.cache/flutter/dart-sdk
-#+END_EXAMPLE
-**** TODO find and implement a clean solution
 ** USAGE
 cf. [[file:template/README.org::*SETUP][SETUP]] (=./template/README.org=)
 ** INFO
@@ -15,24 +7,8 @@ cf. [[file:template/README.org::*SETUP][SETUP]] (=./template/README.org=)
 Tags relate to the flutter-version in ~major.minor.patch~. \\
 The optional flakeVersion is appended: ~major.minor.patch.flakeVersion~. \\
 A buildNumber (+N) cannot be used because of ~nix flake~ restrictions.
-*** nvfetcher
-is used for dart and flutter
-*** =nix=
-is based on nixpkgs \\
-cf. =nix/README.org=
 *** update-workflow
-- specify {flutter,dart}-version in =./nvfetcher.toml=
-- update =./_sources=
-  #+BEGIN_SRC shell :results drawer
-  nvfetcher -f dart -f flutter
-  #+END_SRC
-- update tag in =./template/flake.nix=
-   #+BEGIN_EXAMPLE nix
-   ### …
-    flutter-flake = {
-      url    = "github:FrankBeu/flutterFlake/<TAG>";
-   ### …
-   #+END_EXAMPLE
+- update devshell.nix
 - update =changelog.org=
 - commit
 - tag (name: flutter version)

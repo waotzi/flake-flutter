@@ -15,10 +15,13 @@ The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]
 **** Removed
 **** Fixed
 **** Security
-** 3.0.7    - <2023-09-30>
+** 3.0.8    - <2023-08-17>
+**** ~Changed~
+- clean up the repository
+** 3.0.7    - <2023-07-30>
 **** ~Changed~
 - replace flutter package with nixpkgs
-** 3.0.6    - <2023-09-29>
+** 3.0.6    - <2023-07-29>
 **** ~Changed~
 - flutterVersion: 3.10.6
 - dartVersion:    3.0.7

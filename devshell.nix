@@ -6,12 +6,6 @@ devshell.mkShell {
   motd = ''
     Entered the Android app development environment.
   '';
-  bash = {
-    extra = ''
-      cp -r ${flutter}/bin/cache/dart-sdk ~/.cache/flutter/dart-sdk
-    '';
-    interactive = "";
-  };
   env = let
     javaHome = jdk11.home;
   in [

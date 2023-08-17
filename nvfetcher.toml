@@ -1,8 +1,0 @@
-### https://docs.flutter.dev/development/tools/sdk/releases?tab=linux
-[dart]
-src.manual	= "3.0.7"
-fetch.url	= "https://storage.googleapis.com/dart-archive/channels/stable/release/$ver/sdk/dartsdk-linux-x64-release.zip"
-
-[flutter]
-src.manual	= "3.10.6"
-fetch.url	= "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$ver-stable.tar.xz"
