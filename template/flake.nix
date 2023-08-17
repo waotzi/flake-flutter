@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
     flutter-flake = {
-      url    = "github:FrankBeu/flutterFlake/3.0.8";
+      url    = "github:waotzi/flake-flutter/3.0.8";
       inputs.nixpkgs.follows  = "nixpkgs";
     };
 
