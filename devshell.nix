@@ -58,11 +58,11 @@ devshell.mkShell {
   packages = [
     android-studio
     android-sdk
+    
     gradle
     jdk11
     pkg-config
     pkgconfig
-    android-sdk
     clang
     cmake
 

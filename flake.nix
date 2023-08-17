@@ -37,12 +37,11 @@
   {
     packages = {
       android-sdk = android-nixpkgs.sdk.${system} (sdkPkgs: with sdkPkgs; [
-        build-tools-30-0-3
         cmdline-tools-latest
+        build-tools-32-0-0
         emulator
         platform-tools
-        platforms-android-30
-        platforms-android-31
+        platforms-android-33
 
         # sources-android-30
         # system-images-android-30-google-apis-x86

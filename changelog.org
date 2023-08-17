@@ -15,6 +15,12 @@ The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]
 **** Removed
 **** Fixed
 **** Security
+** 3.1.1   - <2023-08-18>
+**** ~Added~
+- platforms-android-33
+**** ~Removed~
+- platforms-android-30
+- platforms-android-31
 ** 3.1.0   - <2023-08-17>
 **** ~Changed~
 - flutterVersion: 3.10.0
