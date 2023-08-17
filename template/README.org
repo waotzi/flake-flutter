@@ -4,17 +4,17 @@
 **** DONE flake XOR
 ***** create flake in PROJECT-DIR
 #+BEGIN_EXAMPLE shell
-nix flake new --template github:waotzi/flake_flutter ./PROJECT-DIR
+nix flake new --template github:waotzi/flake-flutter ./PROJECT-DIR
 #+END_EXAMPLE
 #+BEGIN_EXAMPLE shell
-nix flake new --template github:waotzi/flake_flutter/<TAG> ./PROJECT-DIR
+nix flake new --template github:waotzi/flake-flutter/<TAG> ./PROJECT-DIR
 #+END_EXAMPLE
 ***** initialize flake in current directory
 #+BEGIN_EXAMPLE shell
-nix flake init --template github:waotzi/flake_flutter
+nix flake init --template github:waotzi/flake-flutter
 #+END_EXAMPLE
 #+BEGIN_EXAMPLE shell
-nix flake init --template github:waotzi/flake_flutter/<TAG>
+nix flake init --template github:waotzi/flake-flutter/<TAG>
 #+END_EXAMPLE
 **** TODO enable direnv
 #+BEGIN_EXAMPLE shell
