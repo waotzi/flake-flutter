@@ -15,9 +15,6 @@ The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]
 **** Removed
 **** Fixed
 **** Security
-** 3.1.1   - <2023-08-17>
-**** ~Added~
-- audio related dependencies
 ** 3.1.0   - <2023-08-17>
 **** ~Changed~
 - flutterVersion: 3.10.0
