@@ -41,7 +41,7 @@ android {
 ```
 
 And lastly to make sure all third party extensions are using the same buildtool you can add again to the root build.gradle file this section:
-<!--  -->
+
 */build.gradle*
 ```
 subprojects {
@@ -55,16 +55,3 @@ subprojects {
     }
 }
 ```
-
-## TODO TODOS
-
-### TODO use app
-### TODO enable `linux` builds
-currently gtk3-dev-libs cannot be found
-### TODO do not use `~/.cache/flutter`
-### TODO emulator
-
-## DONE ERLEDIGTES
-
-### DONE flake-template
-### DONE update-workflow
