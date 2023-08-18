@@ -49,7 +49,7 @@ in
   env = {
     ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
     ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-    JAVA_HOME = jdk11;
+    JAVA_HOME = jdk11.home;
     CHROME_EXECUTABLE = "${google-chrome}/bin/google-chrome-stable";
     FLUTTER_SDK = "${flutter}";
     GRADLE_OPTS="-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/${buildToolsVersion}/aapt2";

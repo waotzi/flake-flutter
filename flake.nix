@@ -24,9 +24,9 @@
           allowUnfree = true;
         };
       };
-    in
+    in rec
     {
-      devShell = devshell.mkShell (import ./devshell.nix { inherit pkgs; });
+      devShell = import ./devshell.nix { inherit pkgs; };
     }) // {
       templates = {
         flutter = {
