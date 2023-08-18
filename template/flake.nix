@@ -7,7 +7,6 @@
       url    = "github:waotzi/flutter-flake/3.2.0";
       inputs.nixpkgs.follows  = "nixpkgs";
     };
-
   };
 
   outputs = { flutter-flake, nixpkgs, self }:

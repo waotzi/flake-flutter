@@ -19,13 +19,40 @@ A buildNumber (+N) cannot be used because of `nix flake` restrictions.
 - push
 
 ## Android
-Make sure the buildToolsVersion is compatible with the gradle version used in the flutter android folder. Specify in the project android/app/build.gradle file the specific buildToolsVersion like so:
+Make sure the buildToolsVersion is compatible with the gradle version used in the flutter android folder. You can define the compiledSdkVersion and buildToolsVersion in the root build.gradle file:
+
+*/build.gradle*
+```
+ext {
+    compileSdkVersion = 33
+    buildToolsVersion = "31.0.0"
+}
+```
+
+You can then use the newley defined variables in your app/build.gradle file:
+
+*/app/build.gradle*
 ```
 android {
-    namespace "com.example.inner_breeze"
-    compileSdkVersion 33
-    buildToolsVersion "31.0.0" // add this line
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     ...
+}
+```
+
+And lastly to make sure all third party extensions are using the same buildtool you can add again to the root build.gradle file this section:
+<!--  -->
+*/build.gradle*
+```
+subprojects {
+    afterEvaluate {project ->
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion rootProject.ext.compileSdkVersion
+                buildToolsVersion rootProject.ext.buildToolsVersion
+            }
+        }
+    }
 }
 ```
 
