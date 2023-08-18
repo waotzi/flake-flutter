@@ -2,12 +2,11 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 3.2.0 - 2023-08-18
+## 3.1.2 - 2023-08-18
 ### Changed
 - updated android dependencies
 
 ## 3.1.1 - 2023-08-18
-
 ### Added
 - platforms-android-33
 
@@ -16,7 +15,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - platforms-android-31
 
 ## 3.1.0 - 2023-08-17
-
 ### Changed
 - flutterVersion: 3.10.0
 - dartVersion: 3.0.0
