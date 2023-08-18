@@ -1,8 +1,8 @@
-{ pkgs, androidSdk, buildToolsVersion }:
+{ pkgs, androidSdk, androidComposition, buildToolsVersion }:
 
 with pkgs;
 devshell.mkShell {
-  name = "greenery";
+  name = "flutter";
   motd = ''
     Entered the Android app development environment.
   '';
@@ -56,6 +56,7 @@ devshell.mkShell {
     }
   ];
   packages = [
+    androidComposition.platform-tools
     androidSdk
 
     gradle

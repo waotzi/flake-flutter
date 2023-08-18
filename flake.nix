@@ -57,7 +57,7 @@
       ];
 
       devShell = import ./devshell.nix { 
-        inherit pkgs androidSdk buildToolsVersion; 
+        inherit pkgs androidSdk androidComposition buildToolsVersion; 
       };
     }) // {
       templates = {
