@@ -3,65 +3,83 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-    flake-utils.url = "github:numtide/flake-utils";
-    flake-utils.inputs.nixpkgs-lib.follows = "nixpkgs";
-    devshell.url = "github:numtide/devshell";
-    devshell.inputs.nixpkgs.follows = "nixpkgs";
-    android-nixpkgs.url = "github:tadfisher/android-nixpkgs/stable";
-    android-nixpkgs.inputs.nixpkgs.follows = "nixpkgs";
-    android-nixpkgs.inputs.devshell.follows = "devshell";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
   };
 
-  outputs = { android-nixpkgs, devshell, flake-utils, nixpkgs, self }:
-  {
-    overlay = final: prev: {
-      inherit (self.packages.${final.system}) android-sdk android-studio;
-    };
-  } //
+  outputs = { self, nixpkgs, flake-utils }:
   flake-utils.lib.eachDefaultSystem (system:
-  let
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {
-        android_sdk.accept_license = true;
-        allowUnfree = true;
+    let
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          android_sdk.accept_license = true;
+          allowUnfree = true;
+        };
       };
-      overlays = [
-        devshell.overlay
-        self.overlay
-      ];
-    };
+      buildToolsVersion = "31.0.0";
 
-    #nv-sources = pkgs.callPackage (import ./_sources/generated.nix) {};
-  in rec
-  {
-    packages = {
-      android-sdk = android-nixpkgs.sdk.${system} (sdkPkgs: with sdkPkgs; [
-        cmdline-tools-latest
-        build-tools-32-0-0
-        emulator
-        platform-tools
-        platforms-android-33
-
-        # sources-android-30
-        # system-images-android-30-google-apis-x86
-        # system-images-android-30-google-apis-playstore-x86
-      ]);
-
-      android-studio = pkgs.androidStudioPackages.stable;
-    };
-
-    devShell = import ./devshell.nix { inherit pkgs; };
-
-
-  }) // {
-    templates = {
-      flutter = {
-        path        = ./template;
-        description = "A flutter development environment";
+      androidComposition = pkgs.androidenv.composeAndroidPackages {
+        toolsVersion = "26.1.1";
+        platformToolsVersion = "33.0.3";
+        buildToolsVersions = [ buildToolsVersion ];
+        includeEmulator = false;
+        emulatorVersion = "31.3.10";
+        platformVersions = [ "33" ];
+        includeSources = false;
+        includeSystemImages = false;
+        systemImageTypes = [ "google_apis_playstore" ];
+        abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
+        includeNDK = true;
+        ndkVersions = [ "22.0.7026061" ];
+        useGoogleAPIs = false;
+        useGoogleTVAddOns = false;
       };
-    };
-    defaultTemplate = self.templates.flutter;
+      androidSdk = androidComposition.androidsdk;
+    in
+    {
 
-  };
+
+      devShell = 
+        with pkgs; mkShell rec {
+          ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
+          JAVA_HOME = jdk11;
+          CHROME_EXECUTABLE = "${google-chrome}/bin/google-chrome-stable";
+          FLUTTER_SDK = "${flutter}";
+          GRADLE_OPTS="-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/${buildToolsVersion}/aapt2";
+          buildInputs = [
+            androidComposition.platform-tools
+            androidSdk
+            gradle
+            jdk11
+            pkg-config
+            clang
+            cmake
+            flutter
+            glib
+            glib.dev
+            google-chrome
+            gtk3
+            gtk3.dev
+            lcov
+            ninja
+            pkgconfig
+            sqlite
+            sqlite-web
+            nodePackages.firebase-tools
+            sd
+            fd
+          ];
+        };
+    }) // {
+      templates = {
+        flutter = {
+          path        = ./template;
+          description = "A flutter development environment";
+        };
+      };
+      defaultTemplate = self.templates.flutter;
+    };
 }
