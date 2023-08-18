@@ -45,6 +45,7 @@
       devShell = 
         with pkgs; mkShell rec {
           ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
+          ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
           JAVA_HOME = jdk11;
           CHROME_EXECUTABLE = "${google-chrome}/bin/google-chrome-stable";
           FLUTTER_SDK = "${flutter}";
