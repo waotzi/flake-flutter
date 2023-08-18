@@ -18,6 +18,7 @@
           android_sdk.accept_license = true;
           allowUnfree = true;
         };
+        overlays = [ self.overlay ];
       };
       buildToolsVersion = "31.0.0";
 
