@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, androidSdk, buildToolsVersion }:
 
 with pkgs;
 devshell.mkShell {
@@ -7,24 +7,6 @@ devshell.mkShell {
     Entered the Android app development environment.
   '';
  env = let
-  androidComposition = androidenv.composeAndroidPackages {
-  toolsVersion = "26.1.1";
-    platformToolsVersion = "33.0.3";
-    buildToolsVersions = [ buildToolsVersion ];
-    includeEmulator = false;
-    emulatorVersion = "31.3.10";
-    platformVersions = [ "33" ];
-    includeSources = false;
-    includeSystemImages = false;
-    systemImageTypes = [ "google_apis_playstore" ];
-    abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
-    includeNDK = true;
-    ndkVersions = [ "22.0.7026061" ];
-    useGoogleAPIs = false;
-    useGoogleTVAddOns = false;
-  };
-  androidSdk = androidComposition.androidsdk;
-  buildToolsVersion = "31.0.0";
   javaHome = jdk11.home;
  in [
     {
@@ -74,8 +56,8 @@ devshell.mkShell {
     }
   ];
   packages = [
-    androidComposition.platform-tools
     androidSdk
+
     gradle
     jdk11
     pkg-config

@@ -5,12 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-utils = {
       url = "github:numtide/flake-utils";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     devshell = {
       url = "github:numtide/devshell";
     };
-
   };
 
   
@@ -23,10 +21,44 @@
           android_sdk.accept_license = true;
           allowUnfree = true;
         };
+        overlays = [
+          devshell.overlays.default
+        ];
       };
-    in rec
-    {
-      devShell = import ./devshell.nix { inherit pkgs; };
+
+      buildToolsVersion = "31.0.0";
+     
+      androidComposition = pkgs.androidenv.composeAndroidPackages {
+        toolsVersion = "26.1.1";
+        platformToolsVersion = "33.0.3";
+        buildToolsVersions = [ buildToolsVersion ];
+        includeEmulator = false;
+        emulatorVersion = "31.3.10";
+        platformVersions = [ "33" ];
+        includeSources = false;
+        includeSystemImages = false;
+        systemImageTypes = [ "google_apis_playstore" ];
+        abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
+        includeNDK = true;
+        ndkVersions = [ "22.0.7026061" ];
+        useGoogleAPIs = false;
+        useGoogleTVAddOns = false;
+      };
+      androidSdk = androidComposition.androidsdk;
+
+    in rec {
+      overlay = final: prev: {
+        inherit (self.packages);
+      };
+
+      packages = [
+        androidComposition.platform-tools
+        androidSdk
+      ];
+
+      devShell = import ./devshell.nix { 
+        inherit pkgs androidSdk buildToolsVersion; 
+      };
     }) // {
       templates = {
         flutter = {
