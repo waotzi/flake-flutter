@@ -1,7 +1,13 @@
 { pkgs }:
 
-let
-  androidComposition = pkgs.androidenv.composeAndroidPackages {
+with pkgs;
+devshell.mkShell {
+  name = "greenery";
+  motd = ''
+    Entered the Android app development environment.
+  '';
+ env = let
+  androidComposition = androidenv.composeAndroidPackages {
   toolsVersion = "26.1.1";
     platformToolsVersion = "33.0.3";
     buildToolsVersions = [ buildToolsVersion ];
@@ -19,10 +25,55 @@ let
   };
   androidSdk = androidComposition.androidsdk;
   buildToolsVersion = "31.0.0";
-in
-{
-  name = "flutter-development-environment";
-  packages = with pkgs; [
+  javaHome = jdk11.home;
+ in [
+    {
+      name  = "ANDROID_HOME";
+      value = "${androidSdk}/libexec/android-sdk";
+    }
+    {
+      name  = "ANDROID_SDK_ROOT";
+      value = "${androidSdk}/libexec/android-sdk";
+    }
+    {
+      name  = "JAVA_HOME";
+      value = javaHome;
+    }
+    {
+      name  = "ANDROID_JAVA_HOME";
+      value = javaHome;
+    }
+    {
+      name  = "CHROME_EXECUTABLE";
+      value = "${google-chrome}/bin/google-chrome-stable";
+    }
+    {
+      name  = "FLUTTER_SDK";
+      value = "${flutter}";
+    }
+    {
+      name  = "DART";
+      value = "${flutter}/bin/cache/dart-sdk/bin/dart";
+    }
+    {
+      name  = "FLUTTER_ROOT";
+      value = "${flutter}";
+    }
+
+    {
+      name  = "DART_SDK_PATH";
+      value = "${flutter}/bin/cache/dart-sdk";
+    }
+    {
+      name  = "DART_SDK";
+      value = "${flutter}/bin/cache/dart-sdk";
+    }
+    {
+      name  = "GRADLE_OPTS";
+      value = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/${buildToolsVersion}/aapt2";
+    }
+  ];
+  packages = [
     androidComposition.platform-tools
     androidSdk
     gradle
@@ -45,13 +96,5 @@ in
     sd
     fd
   ];
-
-  env = {
-    ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
-    ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-    JAVA_HOME = jdk11.home;
-    CHROME_EXECUTABLE = "${google-chrome}/bin/google-chrome-stable";
-    FLUTTER_SDK = "${flutter}";
-    GRADLE_OPTS="-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/${buildToolsVersion}/aapt2";
-  };
 }
+
