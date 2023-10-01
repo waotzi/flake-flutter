@@ -13,7 +13,7 @@ A buildNumber (+N) cannot be used because of `nix flake` restrictions.
 
 ### update-workflow
 - update devshell.nix
-- update `changelog.org`
+- update `changelog.md`
 - commit
 - tag (name: flutter version)
 - push

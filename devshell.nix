@@ -72,7 +72,6 @@ devshell.mkShell {
     gtk3.dev
     lcov
     ninja
-    pkgconfig
     sqlite
     sqlite-web
     nodePackages.firebase-tools
