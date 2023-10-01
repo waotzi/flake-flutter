@@ -1,4 +1,4 @@
-# flutterFlake
+# flutter-flake
 a flake for flutter-projects on nixos
 
 ## USAGE
